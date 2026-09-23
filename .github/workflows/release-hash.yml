@@ -1,0 +1,20 @@
+name: Generate Resource Pack SHA-1
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  calculate-hash:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Generate and Update SHA-1
+        uses: MCJack123/ghaction-generate-release-hashes@v3
+        with:
+          hash-type: 'sha1'
+          file-name: 'sha1-checksum.txt'
